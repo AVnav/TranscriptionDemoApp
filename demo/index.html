@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onload="defaultButtonState()" onload="defaultUploadFileState()">
+    <div id="errorStatusPage"></div>
+    <div id="errorBanner">
+      <div id="errorIcon">
+        <img id="copyIconImage" src="errorIconImage.png" />
+      </div>
+      <div id="errorText">
+        There was an error while authenticating your session. Please refresh the page and try again!
+      </div>
+    </div>
+    <div id="timeoutBanner">
+      <div id="errorIcon">
+        <img id="copyIconImage" src="errorIconImage.png" />
+      </div>
+      <div id="timeoutText">
+        You have reached the maximum number of attempts. Please wait ten minutes to try again!
+      </div>
+    </div>
+    <div id="giftBanner">
+      <div id="giftIcon">
+        <img id="giftIconImage" src="giftIconDark.png" />
+      </div>
+      <div id="giftText">
+        If you want to try a larger file sign up now and get 300 minutes for free.
+      </div>
+    </div>
+    <div id="headerBar">
+      <div id="voicegainLogoContainer">
+        <div id="VoiceLogo">
+          <a href="https://www.voicegain.ai/">
+            <img id="logo" src="logo.png" />
+          </a>
+        </div>
+      </div>
+      <div id="timerDisplayContainer">
+        <div id="timerDisplay"></div>
+        <div id="status">
+          <div id="capture-status">
+            <h3>
+              Listening
+              <span style="--i: 1">.</span>
+              <span style="--i: 2">.</span>
+              <span style="--i: 3">.</span>
+              <span style="--i: 4">.</span>
+              <span style="--i: 5">.</span>
+              <span style="--i: 6">.</span>
+            </h3>
+          </div>
+          <div id="finalizing-status">
+            <h3>
+              Finalizing
+              <span style="--i: 1">.</span>
+              <span style="--i: 2">.</span>
+              <span style="--i: 3">.</span>
+              <span style="--i: 4">.</span>
+              <span style="--i: 5">.</span>
+              <span style="--i: 6">.</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div id="voicegainSignupContainer">
+        <div id="githubLogo">
+          <a href="https://github.com/voicegain/platform/tree/master/examples/microphone-websocket-node-js-v2">
+            <img id="git" src="githubIcon.png"/>
+          </a>
+        </div>
+        <button id="signUp" name="signUp" onclick="window.location.href='https://console.voicegain.ai/signup'">
+          Sign Up
+        </button>
+        <button id="signUpTwo" name="signUpTwo" onclick="window.location.href='https://console.voicegain.ai/signup'">
+          Sign Up
+        </button>
+      </div>
+    </div>
+
+    <div id="containerOne">
+      <div id="mainTitle">
+        Test Drive Voicegain Speech-to-Text Now
+      </div>
+      <div id="secondTitle">
+        <div id="secondTitlePartOne">Speak into your microphone and check out our</div>
+        <div id="secondTitlePartTwo">speech recognition live</div>
+      </div>
+      <div id="timeLimitInfo">
+        Time Limit: 60 seconds!
+      </div>
+      <div id="checkboxContainer">
+        <label class="checkbox bounce">
+          <input type="checkbox" name="checkbox" id="checkbox">
+            <svg viewBox="0 0 21 21">
+                <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+            </svg>
+          </input>
+        </label>
+        <div id="checkboxText" name="checkboxText" disabled>
+          <div id="textOneTerms">I have read and agree to the <a id="termsLinkOne" href="https://github.com/voicegain/platform/blob/master/TERMS-OF-SERVICE.md">Terms and</a></div>
+          <div id="textTwoTerms"><a id="termsLinkTwo" href="https://github.com/voicegain/platform/blob/master/TERMS-OF-SERVICE.md">
+            Conditions</a> and  <a id="privacyLink" href="https://github.com/voicegain/platform/blob/master/PRIVACY.md">Privacy Policy</a></div>
+        </div>
+      </div>
+      <div id="startButtonArea">
+        <div id="outerStart"></div>
+        <button type="submit" value="submit" id="start-capture-button" name="start-capture-button" disabled>
+          <img id="micImage" src="mic_image.png" />
+        </button>
+      </div>
+      <div id="startButtonAreaTwo">
+        <div id="outerStartTwo"></div>
+        <button type="submit" value="submit" id="start-offlineTranscription-button" name="start-offlineTranscription-button" disabled>
+          <img id="uploadImage" src="upload_image.png" />
+        </button>
+      </div>
+
+      <div id="browserDependencyMessage">
+        Please use Chrome or Edge web browsers to try the demo
+      </div>
+    </div>
+
+
+    <div id="containerTwo">
+      <div id="captchaTextMain">Are You?</div>
+      <div id="captchaTextSecondary">We had to ask.</div>
+      <div id="reCaptcha"></div>
+    </div>
+
+
+    <div id="containerThree">
+      <div id="countdownLargeScreen"></div>
+    </div>
+
+
+    <div id="containerFour">
+      <div id="blurContainer"></div>
+      <div id="transcriptionContainer">
+        <div id="transcriptionWidthLimiter">
+          <div id="transcriptionResult">
+          </div>
+        </div>
+      </div>
+      <div id="stopBarContainer">
+        <button onclick="stopMicrophoneCapture()" id="stop-capture-button" disabled>
+          <div id="stopButtonImage"></div>
+        </button>
+      </div>
+    </div>
+
+
+    <div id="containerFive">
+      <div id="blurContainerFinal"></div>
+      <div id="tryPlaybackMessage">
+        If the recognition seems to be off, please try playback below to see if we captured the audio correctly.
+      </div>
+      <div id="shortcuts-container">
+        <button id="copyText" name="copyText">
+          <img id="copyImage" src="copyTranscriptImage.png" />
+        </button>
+        <button id="playback" name="playback" disabled>
+          <img id="playbackButtonImage" src="playbackButtonImage.png" />
+        </button>
+        <button id="returnButton" name="returnButton">
+          <img id="returnHomeButtonImage" src="returnHomeButtonImage.png" />
+        </button>
+        <div id="player">
+          <audio id="myPlaybackAudio" class="myPlaybackAudio" controls></audio>
+          <div class="controls">
+            <button class="play" data-icon="P" aria-label="play pause toggle"></button>
+            <button class="stop" data-icon="S" aria-label="stop"></button>
+            <div class="timer">
+              <div></div>
+              <span aria-label="timer">00:00</span>
+            </div>
+            <button class="rwd" data-icon="B" aria-label="rewind"></button>
+            <button class="fwd" data-icon="F" aria-label="fast forward"></button>
+            <a href="" id="downloadLink" download="playbackAudioFile.mp3">
+              <button class="download" data-icon="l" aria-label="download"></button>
+            </a>
+            <button class="exit" data-icon="X" aria-label="exit"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="containerSix">
+      <div id="uploadCard">
+        <div id="headerCard">
+          <div id="uploadTitle">Upload</div>
+          <button id="closeButton" class="closeButton" data-icon="X" aria-label="exit"></button>
+        </div>
+        <div id="importBox">
+          <div id="fileContainer">
+            <div id="filedrag">Drop files here</div>
+            <div id="dropReplacementText"><div>Drag & Drop your file or&nbsp</div><u id="underlineBrowse">Browse</u></div>
+            <input type="file" id="fileselect" class="fileselect" name="fileselect[]"  accept="audio/wav, audio/mp3, audio/flac"></input>
+            <div id="fileInfo">
+              <div id="UploadedFileTextOne">Uploaded File :</div>
+              <div id="fileInfoMessages"></div>
+
+            </div>
+            <div id="maxfileSizeContainer">
+              <div id="maxFileSizeMessageOne">Max. File Size:</div>
+              <div id="maxFileSizeMessageTwo">15MB</div>
+            </div>
+          </div>
+
+          <div id="seperator"></div>
+
+          <div id="supportedFormatsContainer">
+            <div id="supportedFormatsMessageOne">Supported Formats:</div>
+            <div id="supportedFormatsMessageTwo">FLAC, WAV (Linear PCM), ulaw, alaw</div>
+            <div id="supportedFormatsMessageThree"></div>
+          </div>
+        </div>
+
+
+        <div id="deleteFileZone">
+          <div id="fileIcon">
+            <img id="fileIconImage" src="fileIconImage.png" />
+          </div>
+          <div id="fileIconName"></div>
+          <button id="deleteStagedFile">Delete</button>
+        </div>
+
+        <div id="wrongFileZone">
+          <div id="fileIconTwo">
+            <img id="fileIconImage" src="fileIconImage.png" />
+          </div>
+          <div id="fileIconNameTwo"></div>
+          <div id="errorBox">
+            <div id="errorBoxIcon">
+              <img id="errorBoxImage" src="errorBoxImage.png" />
+            </div>
+            <div id="errorBoxText">There was an error and your file could not be<br>uploaded. Please try again!</div>
+          </div>
+          <button id="tryAgainButton">Try Again</button>
+        </div>
+
+        <div id="reCaptchaTwo" class="g-recaptcha" data-callback="imNotARobot"></div>
+
+        <button class="startTranscribeButton" id="startTranscribeButton" type="button" disabled>
+          Transcribe
+        </button>
+      </div>
+    </div>
+
+
+    <div id="containerSeven">
+      <div class="text-left d-flex justify-content-center" id="transcriptionContainerTwo">
+        <div id="transcriptionWidthLimiterTwo">
+          <div id="transcript-result"></div>
+        </div>
+      </div>
+      <div id="shortcuts-container-two">
+        <button id="copyTextTwo" name="copyTextTwo">
+          <img id="copyImageTwo" src="copyTranscriptImage.png" />
+        </button>
+        <button id="playbackTwo" name="playbackTwo" disabled>
+          <img id="playbackButtonImage" src="playbackButtonImage.png" />
+        </button>
+        <button id="downloadTypes" name="downloadTypes" disabled>
+          <img id="downloadTypesImage" src="downloadTypes_Image.png" />
+        </button>
+        <button id="returnButtonTwo" name="returnButtonTwo">
+          <img id="returnHomeButtonImageTwo" src="returnHomeButtonImage.png" />
+        </button>
+        <div id="playerTwo">
+          <audio id="myPlaybackAudioTwo" class="myPlaybackAudioTwo" controls></audio>
+          <div class="controlsTwo">
+            <button class="playTwo" data-icon="P" aria-label="play pause toggle"></button>
+            <button class="stopTwo" data-icon="S" aria-label="stop"></button>
+            <div class="timerTwo">
+              <div></div>
+              <span aria-label="timer">00:00</span>
+            </div>
+            <button class="rwdTwo" data-icon="B" aria-label="rewind"></button>
+            <button class="fwdTwo" data-icon="F" aria-label="fast forward"></button>
+            <a href="" id="downloadLinkTwo" download="playbackAudioFile.mp3">
+              <button class="downloadTwo" data-icon="l" aria-label="download"></button>
+            </a>
+            <button class="exitTwo" id="exitTwo" data-icon="X" aria-label="exit"></button>
+          </div>
+        </div>
+      </div>
+      <div id="downloadPopup">
+        <a href="" id="download_txtLink" download="offlineTranscript.txt" style="text-decoration: none;">
+           <button id="download_txt" name="download_txt">TXT</button>
+        </a>
+        <div id="dividerOne"></div>
+        <a href="" id="download_srtLink" download="offlineTranscript.srt" style="text-decoration: none;">
+           <button id="download_srt" name="download_srt">SRT</button>
+        </a>
+        <div id="dividerTwo"></div>
+        <a href="" id="download_vttLink" download="offlineTranscript.vtt" style="text-decoration: none;">
+           <button id="download_vtt" name="download_vtt">VTT</button>
+        </a>
+        <div id="dividerThree"></div>
+        <a href="" id="download_ttmlLink" download="offlineTranscript.ttml" style="text-decoration: none;">
+           <button id="download_ttml" name="download_ttml">TTML</button>
+        </a>
+        <div id="dividerFour"></div>
+        <a href="" id="download_jsonLink" download="offlineTranscript.json" style="text-decoration: none;">
+          <button id="download_json" name="download_json">JSON</button>
+        </a>
+     </div>
+    </div>
+
+    <div id="containerEight">
+      <div id="offlineStatus">
+        <div id="statusLoader">
+          <img id="uploadProgressLoader" src="uploadProgressLoaderImage.png" />
+        </div>
+        <div id="statusTag"></div>
+      </div>
+    </div>
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-948WZY3NZJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-948WZY3NZJ');
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="appProps.js"></script>
+    <script src="microphone-limits.js"></script>
+    <script src="microphone-capture.js"></script>
+    <script src="offlineTranscription.js"></script>
+    <script src="upload-limits.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="audio-services.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" defer></script>
+  </body>
+</html>
