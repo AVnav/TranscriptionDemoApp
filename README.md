@@ -5,3 +5,5 @@ Website Link: [https://demo.voicegain.ai/](https://demo.voicegain.ai/)
 
 Notes:
 .env file containing environment variables and company specific API tokens are hidden.
+
+![image](https://user-images.githubusercontent.com/78008084/139165279-8d56ea3d-31f3-4695-ae2f-fbdd7dfe3a49.png)
